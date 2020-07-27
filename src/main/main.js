@@ -29,7 +29,7 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegrationInWorker: true,
-      preload: path.join(__dirname, './preload.js'),
+      // preload: path.join(__dirname, './preload.js'),
     },
   });
 
@@ -38,11 +38,11 @@ function createWindow() {
   // mainWindow.setProgressBar(0.5)
 
   if (isDev) {
-    mainWindow.webContents.on("did-fail-load", () => {
+    mainWindow.webContents.once("did-fail-load", () => {
       console.log('loading...')
       setTimeout(() => {
         mainWindow.loadURL(winURL)
-      }, 500)
+      }, 5000)
     })
   }
 
