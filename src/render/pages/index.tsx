@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './index.less';
-import { Input, Button } from 'antd';
+import { Input } from 'antd';
 import { Link } from 'umi';
 
 const { Search } = Input;
