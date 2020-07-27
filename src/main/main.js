@@ -1,15 +1,13 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
-// const path = require('path')
+const path = require('path');
 
 const env = process.env;
 
 const winURL =
   env.NODE_ENV !== 'production'
     ? `http://localhost:8000`
-    : `file://${__dirname}/index.html`;
-
-console.log(winURL);
+    : `file://${__dirname}/dist/index.html`;
 
 function createWindow() {
   // Create the browser window.
@@ -17,10 +15,15 @@ function createWindow() {
     width: 800,
     height: 600,
     useContentSize: true,
+    webPreferences: {
+      nodeIntegrationInWorker: true,
+      preload: path.join(__dirname, './preload.js'),
+    },
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL('https://api.aiiuii.com/v3');
+  mainWindow.loadURL(winURL);
+  // mainWindow.setProgressBar(0.5)
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
