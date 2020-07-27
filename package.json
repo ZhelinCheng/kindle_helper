@@ -1,0 +1,53 @@
+{
+  "name": "kindle_helper",
+  "version": "1.0.0",
+  "description": "Kindle小助手，支持在线文档、TXT文档转mobi、小说搜索等功能，支持跨平台。",
+  "main": "./src/main/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run start:renderer\" \"npm run start:main\"",
+    "watch": "tsc -w",
+    "start:main": "electron .",
+    "start:renderer": "cross-env APP_ROOT=src/render umi dev",
+    "build": "umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "repository": "https://github.com/ZhelinCheng/kindle_helper",
+  "keywords": [
+    "Electron",
+    "Umi",
+    "Recat",
+    "kindle"
+  ],
+  "author": "ZhelinCheng",
+  "license": "MIT",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^6.2.5",
+    "@umijs/preset-react": "1.5.19",
+    "@umijs/test": "^3.2.10",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "umi": "^3.2.10",
+    "yorkie": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "electron": "^9.1.1"
+  }
+}
